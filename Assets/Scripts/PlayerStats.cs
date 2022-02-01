@@ -13,6 +13,7 @@ public class PlayerStats : MonoBehaviour
     float luck;
     public Button StrengthUp;
     public Button StrengthDown;
+    public Button submit;
 
     float tempStrength;
     
@@ -46,7 +47,7 @@ public class PlayerStats : MonoBehaviour
         
 
         StrengthUp.onClick.AddListener(() => ChangeBaseStat(ref tempStrength, 1));
-        StrengthDown.onClick.AddListener(() => ChangeBaseStat(ref tempStrength, -1));
+        submit.onClick.AddListener(() => submitStatChangeButton());
         
 
     }
@@ -241,6 +242,7 @@ public class PlayerStats : MonoBehaviour
 
         strength += tempStrength;
         tempStrength = 0;
+        setMeleeAttackDamage();
         print(strength);
 
 

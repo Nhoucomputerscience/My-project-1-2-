@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -18,6 +19,11 @@ public class PlayerAttack : MonoBehaviour
     float agility;
     float enemyAgilty;
     float healAmount;
+    public Button attack;
+    public Button spell;
+    public Button potion;
+    public Button spellHeal;
+    
 
 
     // Start is called before the first frame update
@@ -26,6 +32,11 @@ public class PlayerAttack : MonoBehaviour
 
         playerStats = GetComponent<PlayerStats>();
         enemyStats = enemy.GetComponent<PlayerStats>();
+
+        attack.onClick.AddListener(() => AttackButton());
+        spell.onClick.AddListener(() => SpellButton());
+        potion.onClick.AddListener(() => PotionButton());
+        spellHeal.onClick.AddListener(() => SpellHealButton());
 
 
     }
@@ -40,6 +51,7 @@ public class PlayerAttack : MonoBehaviour
 
     void AttackButton()
     {
+        print("attack button was pressed");
         if (playerTurn)
         {
             playerTurn = false;
@@ -53,8 +65,11 @@ public class PlayerAttack : MonoBehaviour
                 else damage = 1;
 
                 enemyHP -= damage;
+                print("damage = " + damage);
+                print("enemyHP = " + enemyHP);
 
             }
+            
             //TODO: delay the amount of seconds that the attack animation would take to play
             EnemyCounterAttack();
         }
@@ -121,8 +136,10 @@ public class PlayerAttack : MonoBehaviour
         if (agility + Random.Range(0f, 5f) > enemyAgilty + Random.Range(0f, 5f))
         {
             playerDodge = true;
+            print("the player dodged!");
         }
         else playerDodge = false;
+        
 
         return playerDodge;
     }
@@ -132,8 +149,10 @@ public class PlayerAttack : MonoBehaviour
         if (agility + Random.Range(0f, 5f) < enemyAgilty + Random.Range(0f, 5f))
         {
             enemyDodge = true;
+            print("the enemy dodged!");
         }
         else enemyDodge = false;
+        
 
         return enemyDodge;
     }
@@ -164,7 +183,7 @@ public class PlayerAttack : MonoBehaviour
                 damage = enemyStats.getMeleeAttackDamage() - getPlayerDefense();
             }
             else damage = 1;
-
+            
             playerStats.setHP(-damage);
             print("HP = " + playerStats.getHP());
 
