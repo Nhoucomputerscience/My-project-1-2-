@@ -31,10 +31,12 @@ public class PlayerStats : MonoBehaviour
     float maxMP;
     float mp;
     float spellAttackDamage;
+    float spellAttackCost;
     float itemDiscovery;
     float itemDiscoveredQuality;
     float equippedWeaponWeight;
     float classHP;
+    float spellHealCost;
 
 
 
@@ -184,6 +186,10 @@ public class PlayerStats : MonoBehaviour
     {
         //adjust health as we play the game
         hp += amount;
+        if (hp > maxHP)
+        {
+            hp = maxHP;
+        }
     }
 
     public float getHP()
@@ -191,6 +197,45 @@ public class PlayerStats : MonoBehaviour
         return hp;
     }
 
+    void setMaxMP()
+    {
+        //TODO: we need to set class HP at some point
+        //calculate what full health is
+        maxMP = (5 * intelligence);
+    }
+
+    void setInitialMP()
+    {
+        //start with full health
+        mp = maxMP;
+    }
+
+    public void setMP(float amount)
+    {
+        //adjust health as we play the game
+        mp += amount;
+    }
+
+    public float getMP()
+    {
+        return mp;
+    }
+
+    public float SpellAttackCost()
+    {
+        //TODOD: create some formula instead of hard code in a cost.
+        spellAttackCost = 5;
+
+        return spellAttackCost;
+    }
+
+    public float SpellHealCost()
+    {
+        //TODOD: create some formula instead of hard code in a cost.
+        spellHealCost = 7;
+
+        return spellHealCost;
+    }
 
     void setSpellAttackDamage()
     {
