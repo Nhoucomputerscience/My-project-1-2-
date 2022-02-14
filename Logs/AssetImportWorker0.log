@@ -165,3 +165,4 @@ Received Import Request.
 Start importing Assets/Player Select.unity using Guid(8689278911fb615488964e687110f1c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee8ea41dca1b7bc36f20effc3e0181e0') in 0.015492 seconds 
   Import took 0.018989 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
